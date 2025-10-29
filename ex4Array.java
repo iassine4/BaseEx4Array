@@ -41,17 +41,18 @@ public class ex4Array {
 	}
 
 	static void inputStudents() {
+		
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.print("Combien d'élèves souhaitez-vous saisir ? ");
-		int nomber = scan.nextInt();
+		System.out.print("\n Combien d'élèves souhaitez-vous saisir ? ");
+		int nomberStud = scan.nextInt();
 		scan.nextLine(); //pour vider Le buffer
 		
-		String[] lastNames = new String[nomber];
-		String[] firstNames = new String[nomber];
-		double[][] studentsNotes = new double[nomber][];
+		String[] lastNames = new String[nomberStud];
+		String[] firstNames = new String[nomberStud];
+		double[][] studentsNotes = new double[nomberStud][];
 		
-		for (int i = 0; i < nomber; i++) {
+		for (int i = 0; i < nomberStud; i++) {
 			System.out.println("--Eleve" + ( i + 1 ) + "---");
 			System.out.print("Nom : ");
 			lastNames[i] = scan.nextLine();
@@ -71,9 +72,27 @@ public class ex4Array {
 		}
 		
 		System.out.println("\n=== Récapitulatif ===");
-		for (int i = 0; i < nomber; i++) {
+		for (int i = 0; i < nomberStud; i++) {
 			double average = calculateAverage(studentsNotes[i]);
 			System.out.printf("%s %s - Moyenne : %.2f\n", firstNames[i], lastNames[i], average);
+		}
+		
+		System.out.print("\nRechercher un élève par nom : ");
+		String searchStud = scan.nextLine();
+		
+		boolean found = false;
+		
+		for ( int i = 0; i < nomberStud; i++) {
+			if (lastNames[i].equalsIgnoreCase(searchStud)) { // equalsIgnoreCase()méthode compare deux chaînes, en ignorant les différences entre les minuscules et les majuscules
+				found = true;
+				System.out.println("\nÉlève trouvé : " + firstNames[i] + " " + lastNames[i]);
+				System.out.print("Notes : ");
+				
+				System.out.printf("\nMoyenne : %.2f\n", calculateAverage(studentsNotes[i]));
+			}
+		}
+		if (!found) {
+		    System.out.println("Aucun élève trouvé avec ce nom.");
 		}
 		
 		scan.close();
