@@ -70,11 +70,12 @@ public class ex4Array {
 			studentsNotes[i] = notes; // les notes entrer par l'utilisateur/éléve
 		}
 		
-		System.out.println("=== Récapitulatif ===");
+		System.out.println("\n=== Récapitulatif ===");
 		for (int i = 0; i < nomber; i++) {
 			double average = calculateAverage(studentsNotes[i]);
 			System.out.printf("%s %s - Moyenne : %.2f\n", firstNames[i], lastNames[i], average);
 		}
+		
 		scan.close();
 	}
 }
