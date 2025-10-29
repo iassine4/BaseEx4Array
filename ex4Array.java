@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Arrays;
 
 public class ex4Array {
 	
@@ -76,6 +76,7 @@ public class ex4Array {
 			double average = calculateAverage(studentsNotes[i]);
 			System.out.printf("%s %s - Moyenne : %.2f\n", firstNames[i], lastNames[i], average);
 		}
+		sortAndDisplayFirstNames(firstNames);
 		
 		System.out.print("\nRechercher un élève par nom : ");
 		String searchStud = scan.nextLine();
@@ -93,8 +94,24 @@ public class ex4Array {
 		}
 		if (!found) {
 		    System.out.println("Aucun élève trouvé avec ce nom.");
-		}
+		}	
 		
 		scan.close();
 	}
+	static void sortAndDisplayFirstNames(String[] firstNames) {
+		System.out.println("\n--- Tri des prénoms ---");
+		
+		String[] copy = Arrays.copyOf(firstNames, firstNames.length);
+	    Arrays.sort(copy);
+	    
+	    System.out.println("Ordre croissant :");
+	    for (String lastName : copy) System.out.print(lastName + " ");
+	    System.out.println();
+
+	    System.out.println("Ordre décroissant :");
+	    for (int i = copy.length - 1; i >= 0; i--) System.out.print(copy[i] + " ");
+	    System.out.println();
+
+	}
+
 }
