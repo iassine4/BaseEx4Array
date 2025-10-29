@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 
 public class ex4Array {
 	
@@ -11,6 +13,7 @@ public class ex4Array {
 		System.out.println(findMin(testNotes));
 		System.out.println(findMax(testNotes));
 		System.out.print(calculateAverage(testNotes));
+		inputStudents();
 		}
 	
 	// Calcule la moyenne d'un tableau de notes
@@ -37,4 +40,41 @@ public class ex4Array {
 		return max;
 	}
 
+	static void inputStudents() {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("Combien d'élèves souhaitez-vous saisir ? ");
+		int nomber = scan.nextInt();
+		scan.nextLine(); //pour vider Le buffer
+		
+		String[] lastNames = new String[nomber];
+		String[] firstNames = new String[nomber];
+		double[][] studentsNotes = new double[nomber][];
+		
+		for (int i = 0; i < nomber; i++) {
+			System.out.println("--Eleve" + ( i + 1 ) + "---");
+			System.out.print("Nom : ");
+			lastNames[i] = scan.nextLine();
+			System.out.print("Prenom : ");
+			firstNames[i] = scan.nextLine();
+			
+			System.out.print("Combien de notes pour cet élève ? ");
+			int nbNotes = scan.nextInt();
+			double[ ] notes = new double[nbNotes];
+			
+			for (int j = 0; j < nbNotes; j++) {
+	            System.out.print("Note " + (j + 1) + " : ");
+	            notes[j] = scan.nextDouble();
+	        }
+			scan.nextLine(); // vider buffer
+			studentsNotes[i] = notes; // les notes entrer par l'utilisateur/éléve
+		}
+		
+		System.out.println("=== Récapitulatif ===");
+		for (int i = 0; i < nomber; i++) {
+			double average = calculateAverage(studentsNotes[i]);
+			System.out.printf("%s %s - Moyenne : %.2f\n", firstNames[i], lastNames[i], average);
+		}
+		scan.close();
+	}
 }
